@@ -1,0 +1,123 @@
+AI-Driven QSAR & Virtual Screening Pipeline for Anti-Cancer Scaffold Discovery
+📌 Overview
+
+This project implements an end-to-end computational drug discovery pipeline integrating:
+
+Cheminformatics (RDKit)
+
+Machine Learning (Scikit-learn, TensorFlow)
+
+Model Interpretability (SHAP)
+
+Molecular Docking (AutoDock Vina)
+
+The pipeline predicts compound activity (IC₅₀), toxicity, and drug-likeness, and integrates docking scores to prioritize anti-cancer scaffolds targeting Caspase-9, BCL-2, and VEGF.
+
+⚙️ Workflow
+
+Data preprocessing (SMILES canonicalization, duplicate removal)
+
+Molecular descriptor generation (MW, LogP, TPSA, HBD/HBA, CSP3)
+
+2048-bit Morgan fingerprint generation (radius=2)
+
+Regression modeling (IC₅₀ prediction)
+
+Toxicity classification with SMOTE balancing
+
+Deep learning regression (LogP prediction)
+
+SHAP-based model interpretability
+
+Docking score integration & consensus scoring
+
+📊 Model Performance
+Random Forest Regressor
+
+Test R² = 0.929
+
+Train R² = 0.925
+
+Strong generalization
+
+5-fold GridSearchCV (540 fits)
+
+HistGradientBoosting
+
+Test R² = 0.753
+
+Toxicity Classifier
+
+Accuracy = 95%
+
+AUC-ROC = 0.959
+
+Stratified K-fold cross-validation (mean accuracy = 0.99)
+
+Neural Network
+
+Architecture: 8 → 64 → 32 → 1
+
+Test MAE ≈ 0.83
+
+Convergence within 30 epochs
+
+🔬 Feature Importance (SHAP)
+
+Top predictors:
+
+MolLogP
+
+Molecular Weight
+
+Indicating lipophilicity and size dominate bioactivity prediction.
+
+🧪 Docking Integration
+
+Docking performed using AutoDock Vina.
+
+Consensus filtering:
+
+Docking score < -7.0 kcal/mol
+
+High ML-predicted activity
+
+Favorable ADMET profile
+
+Identified promising scaffolds:
+
+Benzothiazole
+
+Citral
+
+Thiophene (optimization required)
+
+🚀 Key Technical Contributions
+
+End-to-end reproducible ML pipeline
+
+Hyperparameter optimization
+
+SMOTE class balancing
+
+SHAP explainability
+
+ML + docking hybrid modeling
+
+Robust cross-validation strategy
+
+🛠 Tech Stack
+
+Python
+
+RDKit
+
+Scikit-learn
+
+TensorFlow
+
+SHAP
+
+AutoDock Vina
+
+Google Colab
