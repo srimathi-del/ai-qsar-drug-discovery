@@ -186,9 +186,8 @@ Dr. J. Srimathi Devi, PhD
 Computational Biologist | AI in Drug Discovery  
 Open to global remote AI & computational biology roles  
 
-GitHub: https://github.com/yourusername  
-LinkedIn: https://linkedin.com/in/yourprofile  
-
+GitHub: https://github.com/srimathi-del/ai-qsar-drug-discovery/edit/main/README.md
+LinkedIn: https://linkedin.com/in/www.linkedin.com/in/dr-j-srimathi-devi-5b335158
 ---
 
 ## 📜 License
