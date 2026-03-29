@@ -51,6 +51,8 @@ Computed using RDKit:
 
 ## 📊 Machine Learning Models
 
+Although the dataset size was limited to 100 compounds, appropriate measures including feature selection, normalization, and cross-validation were employed to minimize overfitting and ensure model robustness. Regularization strategies and performance evaluation on independent test data were also used to validate the predictive capability of the models."
+
 ### 🔹 Random Forest Regressor (IC₅₀ Prediction)
 
 - Train R² = 0.925  
@@ -111,6 +113,8 @@ This aligns with medicinal chemistry principles linking lipophilicity and size t
 ---
 
 ## 🧪 Molecular Docking Integration
+
+Due to computational resource limitations and project duration constraints, molecular docking simulations were conducted on five representative compounds selected from the active and non-toxic subset.
 
 Docking performed using AutoDock Vina.
 
