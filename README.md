@@ -56,8 +56,10 @@ Although the dataset size was limited to 100 compounds, appropriate measures inc
  🔹 Random Forest Regressor (IC₅₀ Prediction)
 Predictive accuracy plot
 <img width="536" height="545" alt="image" src="https://github.com/user-attachments/assets/6aa6de7d-e340-4ab6-8372-420d61dadd9e" />
+
 Residual Analysis plot
 <img width="648" height="451" alt="image" src="https://github.com/user-attachments/assets/737be947-e524-4222-b563-4198107ea625" />
+
 The Random Forest Regressor demonstrated consistent predictive performance. The predicted versus actual plot  shows that data points are distributed around the identity line. The model achieved a test R² of approximately 0.85–0.87, with a training R² of 0.947.
 Residual analysis indicated that residuals were centered around zero across the prediction range, with values approximately between −0.6 and 1.0. No apparent systematic pattern was observed in the residual distribution.
 
@@ -68,8 +70,10 @@ Residual analysis indicated that residuals were centered around zero across the 
   - min_samples_split = 2
 
 Residual analysis confirmed strong generalization and minimal overfitting.
+
 Feature Importance plot 
 <img width="632" height="433" alt="image" src="https://github.com/user-attachments/assets/d7a886de-c7f7-4af6-b639-a9c6cf59aa18" />
+
 SHAP analysis showed MolLogP (~0.75) and MolWt (~0.15) as key predictors, while other descriptors (e.g., rotatable bonds, TPSA, H-bond counts) had minimal impact (<0.1), indicating solubility and size chiefly drive model predictions.
 ---
 
