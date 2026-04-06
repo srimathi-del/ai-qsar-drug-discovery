@@ -56,10 +56,9 @@ RDKit-generated Morgan fingerprints (radius 2, 2048 bits) were obtained for five
 Although the dataset size was limited to 100 compounds, appropriate measures including feature selection, normalization, and cross-validation were employed to minimize overfitting and ensure model robustness. Regularization strategies and performance evaluation on independent test data were also used to validate the predictive capability of the models."
 
  🔹 Random Forest Regressor (IC₅₀ Prediction)
-Predictive accuracy plot
+
 <img width="536" height="545" alt="image" src="https://github.com/user-attachments/assets/6aa6de7d-e340-4ab6-8372-420d61dadd9e" />
 
-Residual analysis plot
 <img width="648" height="451" alt="image" src="https://github.com/user-attachments/assets/7b52d4c9-3e3f-4f55-a11b-a0ee4d08e330" />
 
 The Random Forest Regressor demonstrated consistent predictive performance. The predicted versus actual plot  shows that data points are distributed around the identity line. The model achieved a test R² of approximately 0.85–0.87, with a training R² of 0.947.
@@ -81,18 +80,22 @@ SHAP analysis showed MolLogP (~0.75) and MolWt (~0.15) as key predictors, while 
 
  🔹 HistGradientBoosting Regressor
       
-   Predictive Accuracy plot
-  <img width="535" height="480" alt="image" src="https://github.com/user-attachments/assets/af6a0717-cc89-4234-89d8-c7fe317632fe" />
+     <img width="535" height="480" alt="image" src="https://github.com/user-attachments/assets/af6a0717-cc89-4234-89d8-c7fe317632fe" />
  
 The HistGradientBoostingRegressor achieved R² = 0.753 on the test set, explaining ~75% of variance in biological activity. Predicted vs. actual values aligned with the identity line but showed moderate errors, with larger deviations at higher values, indicating reduced prediction accuracy in this range.
 
-Residual Analysis plot
 <img width="636" height="433" alt="image" src="https://github.com/user-attachments/assets/2cc247b6-9182-4bbe-a691-96b03a59bde9" />
 Residual analysis revealed residuals ranging from -0.75 to 1.25, centered around zero with no systematic pattern across predicted values (2.0 to 5.0), supporting no major prediction bias
 
 ---
+ 🔹 Random Forest Classifier (Toxicity Prediction)
 
-### 🔹 Random Forest Classifier (Toxicity Prediction)
+Distribution of Toxicity Classes in the Dataset
+<img width="711" height="156" alt="image" src="https://github.com/user-attachments/assets/11ede4ac-a994-4d41-b1c3-cc924bd16801" />
+
+The curated dataset comprised 100 chemical compounds with validated toxicity profiles, exhibiting a moderate class imbalance with 56 toxic compounds (56%) and 44 non-toxic compounds (44%) 
+
+
 
 - Accuracy = 95%
 - AUC-ROC = **0.959**
