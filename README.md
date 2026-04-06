@@ -28,26 +28,28 @@ This repository demonstrates a reproducible and interpretable AI workflow for ea
 
 ---
 
-## ⚙️ Workflow
+ ⚙️ Workflow
 
-### 1️⃣ Data Preprocessing
+ 1️⃣ Data collection, Preprocessing and Feature Engineering
+Cheminformatics dataset containing molecular structures (used in SMILES format) with some associated properties.
+
+<img width="948" height="377" alt="image" src="https://github.com/user-attachments/assets/e093c862-cd68-4497-80a2-4ab5f9167e5c" />
+Among the compounds analyzed, Fenfuram, Citral, and Thiophene demonstrated balanced physicochemical properties and favourable drug-likeness, making them promising scaffolds for further development, whereas Amygdalin and Picene exhibited significant limitations in solubility, permeability, or structural flexibility.
+
+<img width="948" height="291" alt="image" src="https://github.com/user-attachments/assets/4e20d228-dcd0-405c-bf54-57e3ef47ad2f" />
+Amygdalin was replaced with Benzothiazole due to poor pharmacokinetics, resulting in a final set—Fenfuram, Citral, Picene, Thiophene, and Benzothiazole—whose molecular descriptors (MW, logP, solubility, HBD/HBA, PSA, rotatable bonds) indicated that Citral, Benzothiazole, Thiophene, and Fenfuram had favorable drug-likeness, while Picene showed poor bioavailability
+
+Molecular Fingerprint Generation and Final Dataset Optimization:
+
+<img width="948" height="272" alt="image" src="https://github.com/user-attachments/assets/5b5c48f4-ef95-40ed-a5d1-79f03b8117dd" />
+RDKit-generated Morgan fingerprints (radius 2, 2048 bits) were obtained for five optimized compounds—Fenfuram, Citral, Thiophene, Benzothiazole, and Estradiol (replacing poorly drug-like Picene)—providing a robust basis for similarity screening and QSAR modeling.             
+
+
 - SMILES canonicalization
 - Duplicate and invalid molecule removal
 - Z-score normalization
 - 80/20 train-test split (random_state=42)
 
-### 2️⃣ Descriptor Engineering
-Computed using RDKit:
-- Molecular Weight (MW)
-- LogP
-- TPSA
-- H-bond donors/acceptors
-- Rotatable bonds
-- FractionCSP3
-- Ring count
-- Morgan fingerprints (2048 bits)
-
----
 
 ## 📊 Machine Learning Models
 
@@ -57,8 +59,8 @@ Although the dataset size was limited to 100 compounds, appropriate measures inc
 Predictive accuracy plot
 <img width="536" height="545" alt="image" src="https://github.com/user-attachments/assets/6aa6de7d-e340-4ab6-8372-420d61dadd9e" />
 
-Residual Analysis plot
-<img width="648" height="451" alt="image" src="https://github.com/user-attachments/assets/737be947-e524-4222-b563-4198107ea625" />
+Residual analysis plot
+<img width="648" height="451" alt="image" src="https://github.com/user-attachments/assets/7b52d4c9-3e3f-4f55-a11b-a0ee4d08e330" />
 
 The Random Forest Regressor demonstrated consistent predictive performance. The predicted versus actual plot  shows that data points are distributed around the identity line. The model achieved a test R² of approximately 0.85–0.87, with a training R² of 0.947.
 Residual analysis indicated that residuals were centered around zero across the prediction range, with values approximately between −0.6 and 1.0. No apparent systematic pattern was observed in the residual distribution.
@@ -72,16 +74,21 @@ Residual analysis indicated that residuals were centered around zero across the 
 Residual analysis confirmed strong generalization and minimal overfitting.
 
 Feature Importance plot 
-<img width="632" height="433" alt="image" src="https://github.com/user-attachments/assets/d7a886de-c7f7-4af6-b639-a9c6cf59aa18" />
+
+<img width="632" height="433" alt="image" src="https://github.com/user-attachments/assets/91aa0cab-bb0a-487d-9470-0bcf85b01248" />
 
 SHAP analysis showed MolLogP (~0.75) and MolWt (~0.15) as key predictors, while other descriptors (e.g., rotatable bonds, TPSA, H-bond counts) had minimal impact (<0.1), indicating solubility and size chiefly drive model predictions.
----
 
-### 🔹 HistGradientBoosting Regressor
+ 🔹 HistGradientBoosting Regressor
+      
+   Predictive Accuracy plot
+  <img width="535" height="480" alt="image" src="https://github.com/user-attachments/assets/af6a0717-cc89-4234-89d8-c7fe317632fe" />
+ 
+The HistGradientBoostingRegressor achieved R² = 0.753 on the test set, explaining ~75% of variance in biological activity. Predicted vs. actual values aligned with the identity line but showed moderate errors, with larger deviations at higher values, indicating reduced prediction accuracy in this range.
 
-- Test R² = 0.753
-- Slight overfitting observed
-- Demonstrates comparative model benchmarking
+Residual Analysis plot
+<img width="636" height="433" alt="image" src="https://github.com/user-attachments/assets/2cc247b6-9182-4bbe-a691-96b03a59bde9" />
+Residual analysis revealed residuals ranging from -0.75 to 1.25, centered around zero with no systematic pattern across predicted values (2.0 to 5.0), supporting no major prediction bias
 
 ---
 
