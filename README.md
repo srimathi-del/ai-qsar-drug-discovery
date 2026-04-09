@@ -119,47 +119,72 @@ The Random Forest Classifier achieved excellent predictive performance. On the i
 
  🔹 Feedforward Neural Network (LogP Regression)
 
+Sequential Model Architecture and Training Dynamics
+<img width="896" height="486" alt="image" src="https://github.com/user-attachments/assets/f0e0e081-2efe-437e-80f3-3b9b04182804" />
 
+"Training and Validation Loss Over 40 Epochs"
 
-- Test MAE ≈ 0.83
-- Convergence by ~30 epochs
-- Moderate overfitting observed
+<img width="709" height="523" alt="image" src="https://github.com/user-attachments/assets/f54f57aa-86d4-437f-9e57-1ff39b7f8a31" />
 
----
+The Feedforward Neural Network (FNN) with three fully connected layers (8→64→32→1; 2,689 parameters) was trained on 100 synthetic samples (8 features, 1 target) for 40 epochs. Training loss (MSE: 10.91→0.42; MAE: 2.82→0.50) and validation loss (MSE: 15.77→0.90; MAE: 3.35→0.79) showed strong learning and moderate generalization, with convergence by ~25–30 epochs (p < 0.05).
 
-## 🔍 Model Interpretability (SHAP)
+Test Performance and Predictive Output
+<img width="876" height="132" alt="image" src="https://github.com/user-attachments/assets/d3f268fb-7d92-4b9e-9723-55a2533abc7d" />
 
-SHAP analysis identified:
+Evaluation on the independent test dataset yielded a loss of 1.45 (MSE) and an MAE of 0.83 . These values, although slightly higher than the final validation loss (0.90) and MAE (0.79), remain consistent with the overall trend and indicate satisfactory generalization capability of the model.
 
-- MolLogP as dominant predictor
-- Molecular Weight as secondary contributor
+"Single-Step Model Prediction Output"
 
-This aligns with medicinal chemistry principles linking lipophilicity and size to bioactivity.
+<img width="673" height="545" alt="image" src="https://github.com/user-attachments/assets/0a9b2064-772d-4a72-b90b-a59554db0ed6" />
 
+The regression model showed good predictive performance on the test dataset (n = 20), with predicted values ranging from 0.27 to 5.64. The model achieved a Mean Absolute Error (MAE) of 0.83, indicating that the predictions were on average less than one unit away from the true values. Stable training and validation performance suggested that the model learned meaningful patterns without overfitting and was able to generalize well to unseen data.
 ---
 
 ## 🧪 Molecular Docking Integration
 
 Due to computational resource limitations and project duration constraints, molecular docking simulations were conducted on five representative compounds selected from the active and non-toxic subset.
 
-Docking performed using AutoDock Vina.
+In Silico Docking of Citral to Caspase-9 for Binding Affinity Prediction
 
-Targets:
-- Caspase-9
-- BCL-2
-- VEGF
+"Auto Dock Vina Docking Scores for Citral with Caspase-9
 
-Consensus Filtering Criteria:
-- Docking score < -7.0 kcal/mol
-- High ML-predicted activity
-- Favorable ADMET properties
+<img width="840" height="415" alt="image" src="https://github.com/user-attachments/assets/bb20a8b3-702c-40b2-86b2-d91b6ce15ee1" />
 
-Promising scaffolds identified:
-- Benzothiazole
-- Citral
-- Thiophene (optimization required)
+Molecular docking of Citral with Caspase-9 produced nine binding modes, with affinities ranging from –4.06 kcal/mol (Mode 1, most favourable) to +5.10 kcal/mol (Mode 9, least favourable). The optimal pose (Mode 1) served as the reference for RMSD calculations, while Modes 2–3 showed similar stable orientations (RMSD 2.1–2.9 Å). Modes 4–7 had moderate affinities (–3.57 to –3.46 kcal/mol), Mode 8 suggested an alternative orientation, and Mode 9 displayed an unfavourable positive affinity with higher RMSD values .
 
----
+Molecular Docking of Citral with Caspase-9 Active Site.
+
+<img width="997" height="522" alt="image" src="https://github.com/user-attachments/assets/31129400-1319-4582-829f-c6f1fca855ab" />
+
+Structural analysis of the top-ranked pose revealed that Citral occupies a hydrophobic pocket within Caspase-9’s active site, stabilized by van der Waals and weak polar interactions. The ligand established hydrophobic contacts with LEU142, LEU149, ALA141, and GLY147, while polar interactions involved ARG143, ASN148, SER144, and GLN373. Importantly, Citral was positioned in proximity to the catalytic cysteine residue (CYS287), suggesting potential implications in modulation of Caspase-9 activity. Additional stabilizing contacts with TRP374, PHE371, and ASP369 further supported the binding orientation. Intermolecular distances ranged between 2.9–4.6 Å, with shorter contacts representing van der Waals and weak polar interactions, while longer contacts indicated hydrophobic stabilization.
+
+In Silico Docking of Benzothiazole to Veg-F for Binding Affinity Prediction
+
+<img width="802" height="492" alt="image" src="https://github.com/user-attachments/assets/5d363b40-97e9-4f95-8abf-04c387cca7de" />
+
+Auto Dock Vina generated nine benzothiazole–VEGF binding poses with affinities from –4.51 to –3.70 kcal/mol. The best pose (–4.51 kcal/mol) and five others (Modes 1–6) clustered closely, indicating a stable primary site, while Modes 7–9 showed weaker secondary binding.
+
+"Binding Modes and Interaction Profile of Thiazole with VEGF"
+
+<img width="989" height="492" alt="image" src="https://github.com/user-attachments/assets/46f5c223-3d95-4a20-89be-9ac8c8989a58" />
+
+RMSD analysis identified three clusters: Cluster I (Modes 1, 3–6) in the primary pocket (1.3–3.1 Å), Cluster II (Modes 2, 8) at alternative sites (~14–17 Å), and Cluster III (Modes 7, 9) as transitional (3.9–4.3 Å). The optimal VEGF pose (Fig. 7) showed three interaction zones: π–π stacking with PHE-47, TYR-45, TYR-25; polar contacts with HIS-90, ASP-61, GLU-42/64, ASN-34, SER-50; and hydrophobic encapsulation by ILE-30, VAL-52, LEU-48, MET-81, with the thiazole nitrogen and benzene ring enhancing amphiphilic complementarity within the 400–500 Å³ pocket.
+
+In Silico Docking of Thiophene to Bcl-2 for Binding Affinity Prediction
+
+Auto Dock Vina Docking Results for Thiophene–BCL2 Interaction
+
+<img width="778" height="437" alt="image" src="https://github.com/user-attachments/assets/eb66d07d-1cb6-407a-b26b-8801be16094a" />
+
+Auto Dock Vina docking of thiophene with BCL-2 yielded nine poses (–3.009 to –2.024 kcal/mol); the best pose (–3.009 kcal/mol) and Modes 2–3 were structurally similar, while Modes 7–9 showed higher RMSD and weaker, alternative orientations.
+
+Binding Site Analysis of Thiophene with Bcl-2 Active Site.
+
+<img width="739" height="492" alt="image" src="https://github.com/user-attachments/assets/8d1d7ee5-bdc1-4651-b82e-ca900e30810c" />
+
+The optimal thiophene binding pose (Mode 1) localized within BCL-2’s BH3-binding groove and was stabilized by multiple non-covalent interactions. Strong hydrogen bonds formed with ARG127 and HIS184 (~2.3 Å), while hydrophobic residues PHE153, VAL132, LEU134, and VAL135 created a lipophilic pocket enhancing van der Waals interactions. Aromatic residues PHE153 and TYR18 allowed potential π–π stacking with the thiophene ring, and additional polar contacts with GLN190 and HIS184 further contributed to electrostatic stabilization .
+
+--
 
 ## 📂 Repository Structure
 
@@ -173,8 +198,6 @@ ai-qsar-drug-discovery/
 ├── requirements.txt
 └── README.md
 ```
-
----
 
 ## 🛠 Tech Stack
 
