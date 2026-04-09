@@ -80,8 +80,8 @@ SHAP analysis showed MolLogP (~0.75) and MolWt (~0.15) as key predictors, while 
 
  🔹 HistGradientBoosting Regressor
       
-     <img width="535" height="480" alt="image" src="https://github.com/user-attachments/assets/af6a0717-cc89-4234-89d8-c7fe317632fe" />
- 
+   <img width="581" height="522" alt="image" src="https://github.com/user-attachments/assets/3e612538-f3d8-41fc-9d6c-77dff7f05042" />
+
 The HistGradientBoostingRegressor achieved R² = 0.753 on the test set, explaining ~75% of variance in biological activity. Predicted vs. actual values aligned with the identity line but showed moderate errors, with larger deviations at higher values, indicating reduced prediction accuracy in this range.
 
 <img width="636" height="433" alt="image" src="https://github.com/user-attachments/assets/2cc247b6-9182-4bbe-a691-96b03a59bde9" />
@@ -93,27 +93,33 @@ Residual analysis revealed residuals ranging from -0.75 to 1.25, centered around
 Distribution of Toxicity Classes in the Dataset
 <img width="711" height="156" alt="image" src="https://github.com/user-attachments/assets/11ede4ac-a994-4d41-b1c3-cc924bd16801" />
 
-The curated dataset comprised 100 chemical compounds with validated toxicity profiles, exhibiting a moderate class imbalance with 56 toxic compounds (56%) and 44 non-toxic compounds (44%) 
+The curated dataset comprised 100 chemical compounds with validated toxicity profiles, exhibiting a moderate class imbalance with 56 toxic compounds (56%) and 44 non-toxic compounds (44%) as detailed in Toxicity data Table .
+
+<img width="732" height="220" alt="image" src="https://github.com/user-attachments/assets/c1dff498-e9f9-43d9-9e8a-9da9de8e4462" />
+
+To address class imbalance in the training set, the Synthetic Minority Oversampling Technique (SMOTE) was applied. Prior to balancing, the training set contained 45 active and 35 inactive samples. Following SMOTE application, both classes were equally represented, with 45 samples each, resulting in a balanced training distribution.
+
+<img width="852" height="351" alt="image" src="https://github.com/user-attachments/assets/fe07578f-5886-4fdd-8686-8376ed495d93" />
+
+The Random Forest classifier demonstrated robust predictive performance with an overall accuracy of 85% and exceptional discriminative ability. Detailed performance metrics revealed class-specific variations, with perfect recall for toxic compounds and conservative prediction tendencies as presented in random forest classifier metrics table.
+
+<img width="788" height="469" alt="image" src="https://github.com/user-attachments/assets/476c5d9d-2f67-4d5d-a603-b1e130a8ba3b" />
+
+<img width="794" height="551" alt="image" src="https://github.com/user-attachments/assets/093cd2a9-bc5e-458a-a003-58e70b8fcab2" />
+
+Feature importance analysis revealed that Molecular Weight (28.0%), Log P (23.0%), and IC-50 (20.0%) were the most influential predictors of toxicity in the Random Forest model, collectively accounting for 71% of the predictive power, followed by Polar Surface Area (13.0%), while structural descriptors such as Number of Rotatable Bonds, Number of Rings, Number of H-Bond Donors, and Minimum Degree contributed minimally (7.0%, 5.0%, 4.0%, and 2.0%, respectively). 
+
+Confusion Matrix Analysis and ROC Performance
+
+<img width="670" height="492" alt="image" src="https://github.com/user-attachments/assets/c72d9908-83fa-48c7-8254-fdc431749bde" />
+
+<img width="775" height="663" alt="image" src="https://github.com/user-attachments/assets/45ba69b1-261b-4e01-8a93-b4078bb87fc6" />
+
+The Random Forest Classifier achieved excellent predictive performance. On the independent test set, the model yielded an accuracy of 95%, with a sensitivity of 100% and specificity of 89% as shown in Metrics table. The confusion matrix (Fig) shows 11 true positives, 8 true negatives, 1 false positive, and 0 false negatives, with an AUC-ROC score of 0.9596. These results suggest strong predictive capacity with optimal safety profile, as no toxic compounds were missed. However, the relatively small test set (n = 20) and the single false positive warrant validation on larger, independent datasets to confirm generalizability across diverse chemical spaces.
+
+ 🔹 Feedforward Neural Network (LogP Regression)
 
 
-
-- Accuracy = 95%
-- AUC-ROC = **0.959**
-- Sensitivity = 100%
-- SMOTE applied to training set only
-- Stratified k-fold cross-validation (mean accuracy = 0.99)
-
----
-
-### 🔹 Feedforward Neural Network (LogP Regression)
-
-Architecture:
-```
-Input (8 features)
-→ Dense (64)
-→ Dense (32)
-→ Output (1)
-```
 
 - Test MAE ≈ 0.83
 - Convergence by ~30 epochs
