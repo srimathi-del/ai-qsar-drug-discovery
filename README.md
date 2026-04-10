@@ -2,7 +2,9 @@
 
 ## 📌 Overview
 
-This project presents an end-to-end AI-driven computational drug discovery pipeline integrating:
+This project presents an end-to-end AI-driven computational drug discovery pipeline integration outlined in Graphical Abstract
+
+ <img width="948" height="635" alt="image" src="https://github.com/user-attachments/assets/44fa6d5b-10e2-4dd1-a450-22a0ce865534" />
 
 - Cheminformatics (RDKit)
 - Machine Learning (Scikit-learn)
